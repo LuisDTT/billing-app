@@ -7,7 +7,7 @@ import { Table, TableData, TableRow } from '@/components/Table'
 import { FaPlus } from 'react-icons/fa'
 
 const page = async () => {
-	const data: CustomerDoc[] = await getAll('customers').then((res) => res)
+	const data: CustomerDoc[] = await getAll('customers')
 
 	return (
 		<>

@@ -10,7 +10,7 @@ import PDFDownloadButton from '@/components/billing/DownloadButton'
 import { IoMdDownload } from 'react-icons/io'
 
 const page = async () => {
-	const data = (await getAll('invoices').then((res) => res)) as BillingDoc[]
+	const data = (await getAll('invoices')) as BillingDoc[]
 
 	return (
 		<>
