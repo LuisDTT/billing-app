@@ -1,7 +1,10 @@
-'use client'
+import axios from 'axios'
 
-import { Billing } from '@/components/billing/Billing'
+async function fetchUser() {
+	const res = await axios.get('/api/user')
+}
 
 export default function Home() {
-	return <main></main>
+	// fetchUser()
+	return <></>
 }

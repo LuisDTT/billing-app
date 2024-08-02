@@ -1,14 +1,13 @@
 interface BillingViewerProps {
 	data: {
-		billingId: string
-		createdAt: string
-		customerName: string
-		vehiclePlate: string
-		feeValue: number
-		remainningFeeValue: number
-		userName: string
-		description: string
-		businessAdress: string
+		customerName?: string
+		vehiclePlate?: string
+		billingId?: string
+		fee?: string
+		createdAt?: string
+		amountLeft?: string
+		user?: string
+		description?: string
 	}
 }
 
@@ -17,20 +16,17 @@ export const BillingViewer = ({ data }: BillingViewerProps) => {
 		billingId,
 		createdAt,
 		customerName,
-		feeValue,
-		remainningFeeValue,
+		amountLeft,
 		vehiclePlate,
 		description,
-		userName,
-		businessAdress
+		fee,
+		user
 	} = data
 	return (
 		<div
-			className="bg-[#f5f7f8] py-5 px-5 text-xs border-2 w-96 App"
+			className="bg-[#f5f7f8] py-5 px-5 text-xs border-2 w-fit App"
 			id="factura_final"
 		>
-			<p className="text-center mb-5 uppercase">{businessAdress}</p>
-
 			<p className="font-bold">
 				Nº FACTURA: <span className="font-normal">{billingId}</span>
 			</p>
@@ -39,7 +35,7 @@ export const BillingViewer = ({ data }: BillingViewerProps) => {
 			</p>
 
 			<p className="font-bold">
-				USUARIO: <span className="font-normal">{userName}</span>
+				USUARIO: <span className="font-normal">{user}</span>
 			</p>
 
 			<hr className="border-black my-3" />
@@ -57,11 +53,10 @@ export const BillingViewer = ({ data }: BillingViewerProps) => {
 			<hr className="border-black my-3" />
 
 			<p className="uppercase font-bold">
-				VALOR: <span className="font-normal">{feeValue}</span>
+				VALOR: <span className="font-normal">${fee}</span>
 			</p>
 			<p className="uppercase font-bold">
-				VALOR RESTANTE:{' '}
-				<span className="font-normal">{remainningFeeValue}</span>
+				VALOR RESTANTE: <span className="font-normal">${amountLeft}</span>
 			</p>
 		</div>
 	)

@@ -1,4 +1,5 @@
 'use client'
+import { BillingDoc } from '@/interfaces/firebase'
 import { Document, Page, Text, StyleSheet } from '@react-pdf/renderer'
 
 const styles = StyleSheet.create({
@@ -39,15 +40,14 @@ const styles = StyleSheet.create({
 
 interface MyPdfProps {
 	data: {
-		billingId: string
-		createdAt: string
-		customerName: string
-		vehiclePlate: string
-		feeValue: number
-		remainningFeeValue: number
-		userName: string
-		description: string
-		businessAdress: string
+		customerName?: string
+		vehiclePlate?: string
+		billingId?: string
+		fee?: string
+		createdAt?: string
+		amountLeft?: string
+		user?: string
+		description?: string
 	}
 }
 
@@ -56,17 +56,16 @@ export const BillingPDF = ({ data }: MyPdfProps) => {
 		billingId,
 		createdAt,
 		customerName,
-		feeValue,
-		remainningFeeValue,
+		amountLeft,
+		fee,
+		user,
 		vehiclePlate,
-		businessAdress,
-		description,
-		userName
+		description
 	} = data
 	return (
 		<Document>
 			<Page size={[250, 200]} orientation="portrait" style={styles.page}>
-				<Text style={styles.heading3}>{businessAdress}</Text>
+				<Text> </Text>
 				<Text style={styles.text}>
 					<Text style={styles.subtitle}>Nº FACTURA:</Text>
 					{billingId}
@@ -75,7 +74,7 @@ export const BillingPDF = ({ data }: MyPdfProps) => {
 					<Text style={styles.subtitle}>FECHA DE EMISION:</Text> {createdAt}
 				</Text>
 				<Text style={styles.text}>
-					<Text style={styles.subtitle}>USUARIO:</Text> {userName}
+					<Text style={styles.subtitle}>USUARIO:</Text> {user}
 				</Text>
 
 				<Text style={styles.hr}></Text>
@@ -101,12 +100,12 @@ export const BillingPDF = ({ data }: MyPdfProps) => {
 				<Text style={styles.text}>
 					<Text style={styles.subtitle}>VALOR:</Text>
 					<Text> </Text>
-					{`${feeValue} $`}
+					{`$${fee}`}
 				</Text>
 				<Text style={styles.text}>
 					<Text style={styles.subtitle}>VALOR RESTANTE:</Text>
 					<Text> </Text>
-					{`${remainningFeeValue} $`}
+					{`$${amountLeft}`}
 				</Text>
 			</Page>
 		</Document>

@@ -1,19 +1,17 @@
 'use client'
 
+import { navigate } from '@/app/customers/actions'
 import { deleteDocument } from '@/firebase/api'
-import { useRouter } from 'next/navigation'
 
 interface DeleteProps {
-	id?: string
+	id: string | null
 }
 
 export const Delete = ({ id }: DeleteProps) => {
-	const route = useRouter()
-
 	const handleDelete = async () => {
 		if (id) {
 			const success = await deleteDocument(id, 'customers')
-			route.refresh()
+			navigate('/customers')
 		}
 	}
 	return (
@@ -21,6 +19,7 @@ export const Delete = ({ id }: DeleteProps) => {
 			<button
 				className="w-full bg-blue-500 text-white p-2 rounded mt-3"
 				onClick={handleDelete}
+				type="button"
 			>
 				Delete
 			</button>
