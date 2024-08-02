@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { formatNumber } from '@/utils/formatNumber'
 import { Table, TableData, TableRow } from '@/components/Table'
 import { FaPlus } from 'react-icons/fa'
-import { PageHeader } from '@/components/PageHeader'
 
 const page = async () => {
 	const data: CustomerDoc[] = await getAll('customers').then((res) => res)

@@ -21,7 +21,7 @@ export const Delete = ({ id }: DeleteProps) => {
 				onClick={handleDelete}
 				type="button"
 			>
-				Delete
+				Borrar
 			</button>
 		</>
 	)

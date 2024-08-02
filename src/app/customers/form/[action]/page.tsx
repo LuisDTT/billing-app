@@ -6,25 +6,27 @@ import {
 	updateDocument,
 	validateSinglePlate
 } from '@/firebase/api'
-import { CustomerFormState } from '@/interfaces/CustomerFormState'
+
 import { CustomerDoc } from '@/interfaces/firebase'
 import { validateForm } from '@/validations/customerForm'
 import { useParams, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { navigate } from '../../actions'
 import { formatNumber } from '@/utils/formatNumber'
+import { CustomerFormState } from '@/interfaces/CustomerFormState'
 
 const page = () => {
-	const { action } = useParams()
+	const params = useParams<{ action: string }>()
+	const action = params?.action
 	const searchParams = useSearchParams()
-	const docIdToUpdate = searchParams.get('docId')
+	const docIdToUpdate = searchParams?.get('docId')
 
 	const [formData, setFormData] = useState<CustomerDoc>({
-		name: searchParams.get('name') || '',
-		phoneNumber: searchParams.get('phoneNumber') || '',
-		vehiclePlate: searchParams.get('vehiclePlate') || '',
-		totalAmount: searchParams.get('totalAmount') || '',
-		amountLeft: searchParams.get('amountLeft') || ''
+		name: searchParams?.get('name') || '',
+		phoneNumber: searchParams?.get('phoneNumber') || '',
+		vehiclePlate: searchParams?.get('vehiclePlate') || '',
+		totalAmount: searchParams?.get('totalAmount') || '',
+		amountLeft: searchParams?.get('amountLeft') || ''
 	})
 	const [formErrors, setFormErrors] = useState<CustomerFormState['formErrors']>(
 		{}
@@ -35,7 +37,7 @@ const page = () => {
 		totalAmount?: string
 	}>({
 		totalAmount:
-			formatNumber(searchParams.get('totalAmount') || '').formattedValue || ''
+			formatNumber(searchParams?.get('totalAmount') || '').formattedValue || ''
 	})
 
 	useEffect(() => {
@@ -92,7 +94,7 @@ const page = () => {
 		if (Object.keys(validateForm(formData)).length === 0) {
 			const isValidPlate = await validateSinglePlate(
 				'customers',
-				docIdToUpdate,
+				docIdToUpdate || null,
 				formData.vehiclePlate?.toUpperCase()
 			)
 			//Este condicial verifica si la placa ingresada es valida consultado en la base de datos de los customers
@@ -163,7 +165,7 @@ const page = () => {
 			loading={loading}
 			successMessage={successMessage}
 			isUpdating={action != 'new'}
-			docIdToUpdate={docIdToUpdate}
+			docIdToUpdate={docIdToUpdate || null}
 		>
 			<InputField
 				handleChange={handleChange}
