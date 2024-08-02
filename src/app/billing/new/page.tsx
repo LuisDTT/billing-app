@@ -22,7 +22,7 @@ interface BillingFormState {
 	fee: string
 }
 
-const page = () => {
+const Page = () => {
 	const [formData, setFormData] = useState<BillingFormState>({
 		customerName: '',
 		vehiclePlate: '',
@@ -240,4 +240,4 @@ const page = () => {
 	)
 }
 
-export default page
+export default Page

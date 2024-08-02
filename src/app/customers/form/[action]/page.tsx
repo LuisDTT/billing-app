@@ -15,7 +15,7 @@ import { navigate } from '../../actions'
 import { formatNumber } from '@/utils/formatNumber'
 import { CustomerFormState } from '@/interfaces/CustomerFormState'
 
-const page = () => {
+const Page = () => {
 	const params = useParams<{ action: string }>()
 	const action = params?.action
 	const searchParams = useSearchParams()
@@ -223,4 +223,4 @@ const page = () => {
 	)
 }
 
-export default page
+export default Page
