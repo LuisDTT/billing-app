@@ -1,3 +1,4 @@
+'use client'
 import { getAll } from '@/firebase/api'
 import { CustomerDoc } from '@/interfaces/firebase'
 import { FaEdit } from 'react-icons/fa'
@@ -5,9 +6,17 @@ import Link from 'next/link'
 import { formatNumber } from '@/utils/formatNumber'
 import { Table, TableData, TableRow } from '@/components/Table'
 import { FaPlus } from 'react-icons/fa'
+import { useEffect, useState } from 'react'
 
-const page = async () => {
-	const data: CustomerDoc[] = await getAll('customers')
+const Page = () => {
+	const [data, setData] = useState<CustomerDoc[]>([])
+	useEffect(() => {
+		const fetchData = async () => {
+			const result = await getAll('customers')
+			setData(result as CustomerDoc[])
+		}
+		fetchData()
+	}, [])
 
 	return (
 		<>
@@ -63,4 +72,4 @@ const page = async () => {
 	)
 }
 
-export default page
+export default Page
