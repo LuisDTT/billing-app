@@ -8,9 +8,18 @@ import { RiBillLine } from 'react-icons/ri'
 import { FaEye } from 'react-icons/fa'
 import PDFDownloadButton from '@/components/billing/DownloadButton'
 import { IoMdDownload } from 'react-icons/io'
+import { useEffect, useState } from 'react'
 
 const page = async () => {
-	const data = (await getAll('invoices')) as BillingDoc[]
+	const [data, setData] = useState<BillingDoc[]>([])
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const result = await getAll('invoices')
+			setData(result as BillingDoc[])
+		}
+		fetchData()
+	}, [])
 
 	return (
 		<>
