@@ -1,3 +1,4 @@
+'use client'
 import { Table, TableData, TableRow } from '@/components/Table'
 import { getAll } from '@/firebase/api'
 import { BillingDoc } from '@/interfaces/firebase'
