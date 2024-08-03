@@ -11,7 +11,7 @@ import PDFDownloadButton from '@/components/billing/DownloadButton'
 import { IoMdDownload } from 'react-icons/io'
 import { useEffect, useState } from 'react'
 
-const Page = async () => {
+const Page = () => {
 	const [data, setData] = useState<BillingDoc[]>([])
 
 	useEffect(() => {
