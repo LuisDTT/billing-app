@@ -8,6 +8,7 @@ export const validateForm = ({
 	totalAmount = ''
 }: CustomerDoc) => {
 	let errors: CustomerFormState['formErrors'] = {}
+	const plateRegex = /^[a-zA-Z0-9]*$/ //Regex para evitar caracteres especiales en la placa
 
 	if (name.length < 3 || name.length > 30) {
 		errors = {
@@ -34,6 +35,14 @@ export const validateForm = ({
 		errors = {
 			...errors,
 			plateError: { err: true, msg: 'Ingrese un placa valida' }
+		}
+	} else if (!plateRegex.test(vehiclePlate)) {
+		errors = {
+			...errors,
+			plateError: {
+				err: true,
+				msg: 'No se permiten simbolos o caracteres especiales'
+			}
 		}
 	}
 

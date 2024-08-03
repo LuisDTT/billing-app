@@ -42,7 +42,7 @@ const Page = () => {
 					]}
 				>
 					{data.map((invoice, index) => (
-						<TableRow index={index} key={invoice.vehiclePlate}>
+						<TableRow index={index} key={invoice.billingId}>
 							<TableData data={invoice.billingId} />
 							<TableData data={invoice.vehiclePlate} />
 							<TableData data={invoice.customerName} />
