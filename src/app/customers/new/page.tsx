@@ -142,7 +142,7 @@ const Page = ({ params }: { params: { id: string } }) => {
         params.id || null,
         formData.vehiclePlate?.toUpperCase()
       );
-      console.log(params.id || null);
+
       //Este condicial verifica si la placa ingresada es valida consultado en la base de datos de los customers
       if (isValidPlate) {
         const dataToSend: CustomerDoc = {
@@ -157,7 +157,7 @@ const Page = ({ params }: { params: { id: string } }) => {
         if (params.id) {
           if (params.id) {
             try {
-              await updateDocument(params.id, dataToSend, "customers");
+              await updateDocument(params.id, formData, "customers");
             } catch {
               console.log("Error");
             }

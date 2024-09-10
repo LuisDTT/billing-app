@@ -25,7 +25,7 @@ export interface BillingDoc {
   billingId: string;
   customerName: string;
   vehiclePlate: string;
-  createdAt: Timestamp;
+  createdAt: Timestamp | { seconds: number };
   user: string;
   description: string;
   customerId: string;

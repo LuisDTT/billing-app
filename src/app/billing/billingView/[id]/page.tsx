@@ -8,7 +8,14 @@ const page = async ({ params }: { params: { id: string } }) => {
   const invoiceData = (await getDocById(id, "invoices")) as BillingDoc;
 
   if (invoiceData) {
-    return <Billing invoiceData={invoiceData} />;
+    return (
+      <Billing
+        invoiceData={{
+          ...invoiceData,
+          createdAt: { seconds: invoiceData.createdAt.seconds },
+        }}
+      />
+    );
   } else {
     return <h1>La factura no existe</h1>;
   }
