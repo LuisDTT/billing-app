@@ -1,9 +1,10 @@
-export const formatNumber = (num: string) => {
-	const formattedValue = num
-		.replace(/\D/g, '')
-		.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+export const formatNumber = (num: number | string) => {
+  const formattedValue = num
+    .toString()
+    .replace(/\D/g, "")
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
-	const rawValue = formattedValue.replace(/\./g, '')
+  const rawValue = parseInt(formattedValue.replace(/\./g, ""));
 
-	return { rawValue, formattedValue }
-}
+  return { rawValue, formattedValue };
+};
