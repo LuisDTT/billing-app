@@ -1,4 +1,4 @@
-import { BillingDoc } from "@/interfaces/firebase";
+import {type BillingDoc } from "@/interfaces/firebase";
 import { BillingViewer } from "./BillingViewer";
 import DownloadButton from "./DownloadButton";
 

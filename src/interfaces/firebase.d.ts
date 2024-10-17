@@ -9,23 +9,12 @@ export interface CustomerDoc {
   creditedBalance: number;
 }
 
-// export interface CustomerDoc {
-//   docId?: string;
-//   name?: string;
-//   phoneNumber?: string;
-//   vehiclePlate?: string;
-//   feeValue?: string;
-//   installments?: string; //Cambiar a number
-//   feesPaid?: number;
-//   creditedBalance?: string;
-// }
-
 export interface BillingDoc {
   docId?: string;
   billingId: string;
   customerName: string;
   vehiclePlate: string;
-  createdAt: Timestamp | { seconds: number };
+  createdAt: { seconds: number } | FirebaseFirestoreTypes.Timestamp
   user: string;
   description: string;
   customerId: string;

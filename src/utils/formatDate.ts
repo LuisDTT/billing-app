@@ -13,7 +13,7 @@ export const getFormattedDate = (seconds: number) => {
   const period = hours >= 12 ? "PM" : "AM";
 
   hours = hours % 12;
-  hours = hours ? hours : 12;
+  hours = hours || 12;
 
   const formattedDate = `${day}/${month}/${year}`;
 

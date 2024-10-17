@@ -6,15 +6,15 @@ import {
   getDoc,
   getDocs,
   query,
-  Timestamp,
   updateDoc,
   where,
 } from "firebase/firestore";
 import db from "./service";
-import { BillingDoc, CustomerDoc } from "@/interfaces/firebase";
+import { type BillingDoc, type CustomerDoc } from "@/interfaces/firebase";
+import { type DBCollections } from "@/enums/firebase";
 
 export const validateSinglePlate = async (
-  collectionName: string,
+  collectionName: DBCollections,
   docId: string | null,
   vehiclePlate?: string
 ) => {
@@ -34,7 +34,7 @@ export const validateSinglePlate = async (
 };
 
 export const createNewDoc = async (
-  collectionName: "customers" | "invoices",
+  collectionName: DBCollections,
   data: CustomerDoc | BillingDoc
 ) => {
   try {
@@ -50,7 +50,7 @@ export const createNewDoc = async (
   // const docRef = await addDoc(collection(db, collectionName), data)
 };
 
-export const getAll = async (collectionName: string) => {
+export const getAll = async (collectionName: DBCollections) => {
   const collectionData = collection(db, collectionName);
   const snapshot = await getDocs(collectionData);
   const dataList = snapshot.docs.map((doc) => ({
@@ -60,7 +60,7 @@ export const getAll = async (collectionName: string) => {
   return dataList;
 };
 
-export async function getDocById(docId: string, collectionName: string) {
+export async function getDocById(docId: string, collectionName: DBCollections) {
   const docRef = doc(db, collectionName, docId);
   const docSnap = await getDoc(docRef);
   if (docSnap.exists()) {
@@ -69,12 +69,11 @@ export async function getDocById(docId: string, collectionName: string) {
   } else {
     // docSnap.data() will be undefined in this case
     return false;
-    console.log("No such document!");
   }
 }
 
 export const getDocByVehiclePlate = async (
-  collectionName: string,
+  collectionName: DBCollections,
   vehiclePlate: string
 ) => {
   const q = query(
@@ -97,7 +96,7 @@ export const getDocByVehiclePlate = async (
 export const updateDocument = async (
   idDocToUpdate: string,
   data: {},
-  collectionName: string
+  collectionName: DBCollections
 ) => {
   try {
     const docRef = doc(db, collectionName, idDocToUpdate);
@@ -113,7 +112,10 @@ export const updateDocument = async (
   }
 };
 
-export const deleteDocument = async (docId: string, collectionName: string) => {
+export const deleteDocument = async (
+  docId: string,
+  collectionName: DBCollections
+) => {
   try {
     await deleteDoc(doc(db, collectionName, docId));
     return true;

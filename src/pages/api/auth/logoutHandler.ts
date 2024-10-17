@@ -1,6 +1,6 @@
-import { FirebaseError } from 'firebase-admin'
+import {type FirebaseError } from 'firebase-admin'
 import { auth } from '@/firebase/firebaseAdmin'
-import { NextApiRequest, NextApiResponse } from 'next'
+import { type NextApiRequest, type NextApiResponse } from 'next'
 import { serialize } from 'cookie'
 
 export default async function logoutHandler(

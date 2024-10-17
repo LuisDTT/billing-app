@@ -1,14 +1,14 @@
 import { auth } from '@/firebase/service'
-import { FirebaseError } from 'firebase-admin'
+import { type FirebaseError } from 'firebase-admin'
 import { signInWithEmailAndPassword } from 'firebase/auth'
-import { NextApiRequest, NextApiResponse } from 'next'
+import { type NextApiRequest,type NextApiResponse } from 'next'
 import { serialize } from 'cookie'
 
 export default async function loginHandler(
 	req: NextApiRequest,
 	res: NextApiResponse
 ) {
-	const { email, password } = req.body
+	const { email, password } = req.body as {email :string, password: string}
 
 	try {
 		const userCredential = await signInWithEmailAndPassword(
@@ -22,14 +22,13 @@ export default async function loginHandler(
 			httpOnly: true,
 			secure: process.env.NODE_ENV === 'production',
 			sameSite: 'strict', // || None
-			path: '/'
+			path: '/',
 		})
 		res.setHeader('Set-Cookie', serialized)
 
 		return res.json(true)
 	} catch (error) {
 		const firebaseError = error as FirebaseError
-
 		return res.status(401).json(firebaseError.code)
 	}
 }

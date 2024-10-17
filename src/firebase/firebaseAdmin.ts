@@ -1,8 +1,7 @@
-import admin from 'firebase-admin'
-import { createRemoteJWKSet } from 'jose'
+import admin, { type ServiceAccount } from 'firebase-admin'
 
-const serviceAccount = JSON.parse(
-	process.env.FIREBASE_SERVICE_ACCOUNT_KEY as string
+const serviceAccount : ServiceAccount = JSON.parse(
+	process.env.FIREBASE_SERVICE_ACCOUNT_KEY ?? ''
 )
 
 if (!admin.apps.length) {

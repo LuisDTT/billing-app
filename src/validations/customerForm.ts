@@ -1,4 +1,4 @@
-import { CustomerFormState } from "@/interfaces/CustomerFormState";
+import { type CustomerFormState } from "@/interfaces/CustomerFormState";
 
 export const validateForm = ({
   name = "",
@@ -8,7 +8,7 @@ export const validateForm = ({
   installments = 0,
 }: CustomerFormState["formData"]) => {
   let errors: CustomerFormState["formErrors"] = {};
-  const plateRegex = /^[a-zA-Z0-9]*$/; //Regex para evitar caracteres especiales en la placa
+  const plateRegex = /^[a-zA-Z0-9]*$/; // Regex para evitar caracteres especiales en la placa
 
   if (name.length < 3 || name.length > 30) {
     errors = {
@@ -31,7 +31,7 @@ export const validateForm = ({
     };
   }
 
-  if (vehiclePlate.length != 6) {
+  if (vehiclePlate.length !== 6) {
     errors = {
       ...errors,
       plateError: { err: true, msg: "Ingrese un placa valida" },
@@ -61,7 +61,7 @@ export const validateForm = ({
     };
   }
 
-  if (installments == 0) {
+  if (installments === 0) {
     errors = {
       ...errors,
       installmentsError: { err: true, msg: "Ingrese algun valor" },
