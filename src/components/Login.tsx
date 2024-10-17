@@ -28,7 +28,7 @@ export const Login = () => {
                     const userData = res.data as AdminUser
                     localStorage.setItem('userName', userData.name)
                     localStorage.setItem('email', userData.email)
-                    router.push('/')
+                    router.refresh()
                 } catch {
                     console.log(
                         'El usuario no se encuentra registrado en la base de datos',
