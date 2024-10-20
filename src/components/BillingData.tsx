@@ -44,6 +44,7 @@ export const BillingData = async () => {
                         invoice.createdAt.seconds,
                     )}
                 />
+
                 <TableData
                     data={
                         <div className="flex gap-3 justify-center">

@@ -211,7 +211,7 @@ const Page = ({ params }: { params: { id: string } }) => {
             return
         }
         setLoading(false)
-        revalidateCustomers()
+        await revalidateCustomers()
         router.push('/customers')
     }
 
