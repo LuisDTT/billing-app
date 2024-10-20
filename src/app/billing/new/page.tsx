@@ -233,7 +233,6 @@ const Page = () => {
                         oldCreditedBalance: customerData.creditedBalance,
                         customerInstallmentsPaid: customerData.installmentsPaid,
                     }
-
                     await updateDocument(
                         customerData.docId,
                         {
@@ -249,8 +248,8 @@ const Page = () => {
                         billingDataToSend,
                     )
                     if (response.docId && response.success) {
-                        revalidateInvoices()
-                        revalidateCustomers()
+                        await revalidateInvoices()
+                        await revalidateCustomers()
                         router.push(`/billing/billingView/${response.docId}`)
                     }
                 }
@@ -318,6 +317,7 @@ const Page = () => {
                         type: 'text',
                         name: 'receivedFee',
                         value: formattedValue,
+                        disabled: !customerData,
                     }}
                     handleChange={handleChange}
                     upperCase
