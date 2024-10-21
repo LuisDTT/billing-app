@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react'
 import { formatNumber } from '@/utils/formatNumber'
 import { type BillingDoc, type CustomerDoc } from '@/interfaces/firebase'
 import { DBCollections } from '@/enums/firebase'
-import { serverTimestamp } from 'firebase/firestore'
+import { serverTimestamp, type Timestamp } from 'firebase/firestore'
 import { CgDanger } from 'react-icons/cg'
 import { BillingViewer } from '@/components/billing/BillingViewer'
 import { getInstallmentsNumbers } from '@/utils/getInstallmentsNumbers'
@@ -219,7 +219,7 @@ const Page = () => {
 
                 if (customerData.docId) {
                     const billingDataToSend: BillingDoc = {
-                        createdAt: serverTimestamp(),
+                        createdAt: serverTimestamp() as Timestamp,
                         user: formData.user, // Modificar user
                         description: 'Tarifa Motos', // Modificar descripcion
                         customerId: customerData.docId,
