@@ -1,6 +1,6 @@
 export const getFormattedDate = (seconds: number) => {
-    const localDate = new Date(seconds * 1000)
-    console.log(localDate)
+    const offsetMilliseconds = -5 * 60 * 60 * 1000
+    const localDate = new Date(seconds * 1000 + offsetMilliseconds)
     const year = localDate.getFullYear().toString()
     const month = ('0' + (localDate.getMonth() + 1)).slice(-2)
     const day = ('0' + localDate.getDate()).slice(-2)
