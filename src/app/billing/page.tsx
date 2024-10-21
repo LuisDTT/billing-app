@@ -1,4 +1,4 @@
-import { BillingData } from '@/components/BillingData'
+import { BillingData } from '@/components/billing/BillingData'
 import { Table } from '@/components/table/Table'
 import { TableSkeleton } from '@/components/table/TableSkeleton'
 import Link from 'next/link'
@@ -13,7 +13,8 @@ const page = async () => {
     return (
         <>
             <div className="m-7">
-                <div className="flex justify-end ">
+                <div className="flex justify-between">
+                    <div></div>
                     <Link href={'billing/new'} className="">
                         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex items-center gap-2">
                             <RiBillLine /> Crear nueva factura

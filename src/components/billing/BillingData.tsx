@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { getAll } from '@/firebase/api'
 import { type BillingDoc } from '@/interfaces/firebase'
 import { DBCollections } from '@/enums/firebase'
-import { EmptyTable } from './table/EmptyTable'
+import { EmptyTable } from '../table/EmptyTable'
 import { TableData, TableRow } from '@/components/table/Table'
 import { getFormattedDate } from '@/utils/formatDate'
 import { FaEye } from 'react-icons/fa'
@@ -38,12 +39,7 @@ export const BillingData = async () => {
                 <TableData data={invoice.customerName} />
                 <TableData data={`${invoice.invoicedInstallments}`} />
 
-                <TableData
-                    data={getFormattedDate(
-                        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-                        invoice.createdAt.seconds,
-                    )}
-                />
+                <TableData data={getFormattedDate(invoice.createdAt.seconds)} />
 
                 <TableData
                     data={

@@ -1,4 +1,4 @@
-import { Billing } from '@/components/billing/Billing'
+import { Billing } from '@/components/billing/BillingDetails'
 import { DBCollections } from '@/enums/firebase'
 import { getDocById } from '@/firebase/api'
 import { type BillingDoc } from '@/interfaces/firebase'
