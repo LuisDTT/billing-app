@@ -39,9 +39,7 @@ export const BillingData = async () => {
                 <TableData data={invoice.customerName} />
                 <TableData data={`${invoice.invoicedInstallments}`} />
 
-                <TableData
-                    data={new Date(invoice.createdAt.seconds * 1000).toString()}
-                />
+                <TableData data={getFormattedDate(invoice.createdAt.seconds)} />
 
                 <TableData
                     data={
